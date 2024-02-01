@@ -1,0 +1,26 @@
+#!/bin/bash
+echo_color() {
+    local color_code
+    local color="${1^^}" # 转换为大写
+    local text="$2"
+
+    # 定义颜色代码
+    case "$color" in
+        "BLACK") color_code='\033[0;30m' ;;
+        "RED") color_code='\033[0;31m' ;;
+        "GREEN") color_code='\033[0;32m' ;;
+        "YELLOW") color_code='\033[0;33m' ;;
+        "BLUE") color_code='\033[0;34m' ;;
+        "MAGENTA") color_code='\033[0;35m' ;;
+        "CYAN") color_code='\033[0;36m' ;;
+        "WHITE") color_code='\033[0;37m' ;;
+        *) color_code="\033[0m" # 默认颜色
+    esac
+
+    # 打印带颜色的文本
+    printf "${color_code}%s\033[0m\n" "$text"
+}
+
+# 使用方法示例
+# print_colored_text "red" "This is a red text"
+# print_colored_text "blue" "This is a blue text"

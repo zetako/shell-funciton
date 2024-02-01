@@ -1,0 +1,16 @@
+#!/bin/bash
+lock_pwd() {
+    # 获取调用脚本的路径
+    local script_path="${BASH_SOURCE[1]}"
+    if [[ -z "$script_path" ]]; then
+        echo "Error: Cannot determine the script's directory."
+        return 1
+    fi
+
+    # 获取脚本所在目录的绝对路径
+    local script_dir
+    script_dir=$(dirname "$(realpath "$script_path")")
+
+    # 改变工作目录到脚本所在目录
+    cd "$script_dir" || return
+}
